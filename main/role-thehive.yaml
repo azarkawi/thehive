@@ -1,31 +1,36 @@
----
-#
-# Create a role, `pod-reader`, that can list pods and
-# bind the default service account in the namespace
-# that the binding is deployed to to that role.
-#
-kind: Role
+# ClusterRole definieert de permissies voor het lezen van pods
+kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: pod-reader
+  labels:
+    app: thehive
 rules:
-  - apiGroups: [""] # "" indicates the core API group
+  - apiGroups: [""]
     resources: ["pods"]
     verbs: ["get", "watch", "list"]
 ---
+# ServiceAccount voor TheHive
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: thehive
+  namespace: thehive  # Zorg ervoor dat de namespace correct is
+  labels:
+    app: thehive
 ---
-kind: RoleBinding
+# ClusterRoleBinding om de rol te koppelen aan de ServiceAccount
+kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: read-pods
+  labels:
+    app: thehive
 subjects:
   - kind: ServiceAccount
     name: thehive
+    namespace: thehive  # Zorg ervoor dat de namespace correct is
 roleRef:
-  kind: Role
+  kind: ClusterRole
   name: pod-reader
   apiGroup: rbac.authorization.k8s.io
