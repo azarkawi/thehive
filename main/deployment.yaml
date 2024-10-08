@@ -5,19 +5,7 @@ metadata:
     name: thehive
     labels:
         name: thehive
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: cassandra
-  name: cassandra
-  namespace: thehive
-spec:
-  ports:
-    - port: 9042
-  selector:
-    app: cassandra
+
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -91,21 +79,8 @@ spec:
               mountPath: /var/lib/cassandra
       volumes:
         - name: cassandra-data
-          emptyDir: {}
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: elasticsearch
-  name: elasticsearch
-  namespace: thehive
-spec:
-  ports:
-    - port: 9200
-  selector:
-    app: elasticsearch
+          persistentVolumeClaim:
+            claimName: cassandra-pvc
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -167,20 +142,8 @@ spec:
               mountPath: /usr/share/elasticsearch/data
       volumes:
         - name: es-data
-          emptyDir: {}
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: minio
-  name: minio
-  namespace: thehive
-spec:
-  ports:
-    - port: 9000
-  selector:
-    app: minio
+          persistentVolumeClaim:
+            claimName: elasticsearch-pvc
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -225,7 +188,8 @@ spec:
               mountPath: /data
       volumes:
         - name: s3-data
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: minio-pvc
 ---
 #
 # Create a role, `pod-reader`, that can list pods and
