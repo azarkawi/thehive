@@ -12,7 +12,7 @@ spec:
       nodePort: 30088
   selector:
     app: thehive
-    ---
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -25,7 +25,7 @@ spec:
     - port: 9042
   selector:
     app: cassandra
-    ---
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -38,7 +38,7 @@ spec:
     - port: 9200
   selector:
     app: elasticsearch
-    ---
+---
 apiVersion: v1
 kind: Service
 metadata:
