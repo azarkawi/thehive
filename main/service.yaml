@@ -9,6 +9,6 @@ spec:
   type: NodePort
   ports:
     - port: 9000
-      nodePort: 38888
+      nodePort: 30088
   selector:
     app: thehive
