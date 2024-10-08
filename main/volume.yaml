@@ -11,6 +11,7 @@ spec:
       storage: 3Gi  # Pas de opslagcapaciteit aan indien nodig
   storageClassName: longhorn  # Zorg ervoor dat de opslagklasse correct is
   # PersistentVolumeClaim voor Cassandra
+---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
