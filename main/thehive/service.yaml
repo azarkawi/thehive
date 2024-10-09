@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: thehive
+  name: thehive
+  namespace: thehive
+spec:
+  type: NodePort
+  ports:
+    - port: 9000
+      nodePort: 30088
+  selector:
+    app: thehive

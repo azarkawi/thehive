@@ -1,0 +1,13 @@
+# PersistentVolumeClaim voor Elasticsearch
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: elasticsearch-pvc
+  namespace: thehive
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi  # Pas de opslagcapaciteit aan indien nodig
+  storageClassName: longhorn  # Zorg ervoor dat de opslagklasse correct is
