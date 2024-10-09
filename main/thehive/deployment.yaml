@@ -34,7 +34,7 @@ spec:
       serviceAccountName: thehive
       containers:
         - name: thehive
-          image: strangebee/thehive:latest
+          image: strangebee/thehive:5.3
           command:
             - "/opt/thehive/entrypoint"
             - "--secret"
