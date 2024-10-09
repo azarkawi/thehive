@@ -65,6 +65,12 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.podIP
+            - name: "PEKKO_MANAGEMENT_CLUSTER_BOOTSTRAP_CONTACT_POINT_DISCOVERY_DISCOVERY_METHOD"
+              value: "kubernetes-api"
+            - name: "PEKKO_MANAGEMENT_CLUSTER_BOOTSTRAP_CONTACT_POINT_DISCOVERY_REQUIRED_CONTACT_POINT_NR"
+              value: "0"
+            - name: "PEKKO_DISCOVERY_KUBERNETES_API_POD_LABEL_SELECTOR"
+              value: "app=thehive"
           resources:
             limits:
               memory: 2Gi
