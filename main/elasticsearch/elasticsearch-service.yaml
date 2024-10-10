@@ -6,9 +6,7 @@ metadata:
   name: elasticsearch
   namespace: thehive
 spec:
-  type: NodePort
   ports:
-    - port: 9000
-      nodePort: 30089
+    - port: 9200
   selector:
-    app: thehive
+    app: elasticsearch
