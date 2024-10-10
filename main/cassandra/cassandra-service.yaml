@@ -11,4 +11,4 @@ spec:
     - port: 9042
       nodePort: 30087
   selector:
-    app: thehive
+    app: cassandra
