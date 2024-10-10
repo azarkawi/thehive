@@ -5,10 +5,8 @@ metadata:
     app: cassandra
   name: cassandra
   namespace: thehive
-    spec:
-  type: NodePort
+spec:
   ports:
     - port: 9042
-      nodePort: 30087
   selector:
     app: cassandra
