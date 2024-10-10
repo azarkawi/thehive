@@ -9,6 +9,6 @@ metadata:
   type: NodePort
   ports:
     - port: 9042
-      nodePort: 30088
+      nodePort: 30089
   selector:
     app: cassandra
